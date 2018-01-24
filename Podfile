@@ -6,10 +6,13 @@ target 'Taipei_Park' do
   use_frameworks!
 
   # Pods for Taipei_Park
-
+  pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireObjectMapper', '~> 5.0'
+  pod 'Alamofire-SwiftyJSON'
+  
   target 'Taipei_ParkTests' do
     inherit! :search_paths
-    # Pods for testing
+    
   end
 
 end

@@ -14,6 +14,7 @@ class Taipei_ParkTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
@@ -21,9 +22,15 @@ class Taipei_ParkTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testRequestParkInfo() {
+        let exp = self.expectation(description: "Expectation")
+        DataManager.sharedManager.requestParkInfo { (success) in
+            XCTAssert(success)
+            exp.fulfill()
+        }
+        self.waitForExpectations(timeout: 30) { (exp) in
+            
+        }
     }
     
     func testPerformanceExample() {

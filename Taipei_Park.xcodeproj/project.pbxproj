@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3D3BB3102018AA100098E5AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB30F2018AA100098E5AA /* AppDelegate.swift */; };
-		3D3BB3122018AA100098E5AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3112018AA100098E5AA /* ViewController.swift */; };
 		3D3BB3152018AA100098E5AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3BB3132018AA100098E5AA /* Main.storyboard */; };
 		3D3BB3172018AA100098E5AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D3BB3162018AA100098E5AA /* Assets.xcassets */; };
 		3D3BB31A2018AA100098E5AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D3BB3182018AA100098E5AA /* LaunchScreen.storyboard */; };
 		3D3BB3252018AA100098E5AA /* Taipei_ParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3242018AA100098E5AA /* Taipei_ParkTests.swift */; };
+		3D3BB3302018B7310098E5AA /* ParkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB32F2018B7310098E5AA /* ParkTableViewController.swift */; };
+		3D3BB3322018B7940098E5AA /* ParkListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3312018B7940098E5AA /* ParkListCell.swift */; };
+		3D3BB3352018B8B90098E5AA /* ParkSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3342018B8B90098E5AA /* ParkSpot.swift */; };
+		3D3BB3372018BC280098E5AA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3362018BC280098E5AA /* DataManager.swift */; };
+		3D3BB3382018C2050098E5AA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3362018BC280098E5AA /* DataManager.swift */; };
+		3D3BB3392018C2080098E5AA /* ParkSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3342018B8B90098E5AA /* ParkSpot.swift */; };
 		BB00E0178E89215A1BCD8A24 /* Pods_Taipei_ParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A6DBE2CE07CFC35DD3D9B2 /* Pods_Taipei_ParkTests.framework */; };
 		FA43114C5373B991649747B9 /* Pods_Taipei_Park.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E50A709C3EAE7B304BA4834 /* Pods_Taipei_Park.framework */; };
 /* End PBXBuildFile section */
@@ -31,7 +36,6 @@
 		2E50A709C3EAE7B304BA4834 /* Pods_Taipei_Park.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taipei_Park.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3BB30C2018AA100098E5AA /* Taipei_Park.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taipei_Park.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3BB30F2018AA100098E5AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3D3BB3112018AA100098E5AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3D3BB3142018AA100098E5AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D3BB3162018AA100098E5AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D3BB3192018AA100098E5AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +43,10 @@
 		3D3BB3202018AA100098E5AA /* Taipei_ParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Taipei_ParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3BB3242018AA100098E5AA /* Taipei_ParkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taipei_ParkTests.swift; sourceTree = "<group>"; };
 		3D3BB3262018AA100098E5AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D3BB32F2018B7310098E5AA /* ParkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkTableViewController.swift; sourceTree = "<group>"; };
+		3D3BB3312018B7940098E5AA /* ParkListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkListCell.swift; sourceTree = "<group>"; };
+		3D3BB3342018B8B90098E5AA /* ParkSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkSpot.swift; sourceTree = "<group>"; };
+		3D3BB3362018BC280098E5AA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		47A6DBE2CE07CFC35DD3D9B2 /* Pods_Taipei_ParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taipei_ParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5230D1736F52FC1ACD8593E6 /* Pods-Taipei_ParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taipei_ParkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taipei_ParkTests/Pods-Taipei_ParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BCCDB5842562469B8A5975D /* Pods-Taipei_Park.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taipei_Park.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taipei_Park/Pods-Taipei_Park.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,8 +106,10 @@
 		3D3BB30E2018AA100098E5AA /* Taipei_Park */ = {
 			isa = PBXGroup;
 			children = (
+				3D3BB3332018B88B0098E5AA /* Data */,
 				3D3BB30F2018AA100098E5AA /* AppDelegate.swift */,
-				3D3BB3112018AA100098E5AA /* ViewController.swift */,
+				3D3BB32F2018B7310098E5AA /* ParkTableViewController.swift */,
+				3D3BB3312018B7940098E5AA /* ParkListCell.swift */,
 				3D3BB3132018AA100098E5AA /* Main.storyboard */,
 				3D3BB3162018AA100098E5AA /* Assets.xcassets */,
 				3D3BB3182018AA100098E5AA /* LaunchScreen.storyboard */,
@@ -115,6 +125,15 @@
 				3D3BB3262018AA100098E5AA /* Info.plist */,
 			);
 			path = Taipei_ParkTests;
+			sourceTree = "<group>";
+		};
+		3D3BB3332018B88B0098E5AA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3D3BB3342018B8B90098E5AA /* ParkSpot.swift */,
+				3D3BB3362018BC280098E5AA /* DataManager.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		DC488D3167258473DE0436EF /* Pods */ = {
@@ -272,9 +291,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taipei_Park/Pods-Taipei_Park-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -320,9 +350,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Taipei_ParkTests/Pods-Taipei_ParkTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -336,8 +373,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3BB3122018AA100098E5AA /* ViewController.swift in Sources */,
 				3D3BB3102018AA100098E5AA /* AppDelegate.swift in Sources */,
+				3D3BB3372018BC280098E5AA /* DataManager.swift in Sources */,
+				3D3BB3352018B8B90098E5AA /* ParkSpot.swift in Sources */,
+				3D3BB3302018B7310098E5AA /* ParkTableViewController.swift in Sources */,
+				3D3BB3322018B7940098E5AA /* ParkListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +386,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3BB3252018AA100098E5AA /* Taipei_ParkTests.swift in Sources */,
+				3D3BB3392018C2080098E5AA /* ParkSpot.swift in Sources */,
+				3D3BB3382018C2050098E5AA /* DataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
