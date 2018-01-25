@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,6 +55,7 @@
                                     <constraints>
                                         <constraint firstItem="Il7-0G-ac3" firstAttribute="top" secondItem="Lel-J4-DkN" secondAttribute="top" constant="8" id="1h2-Jk-3vc"/>
                                         <constraint firstItem="heN-PF-KaF" firstAttribute="leading" secondItem="PxV-Zs-maU" secondAttribute="leading" id="4hg-6b-sIe"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Il7-0G-ac3" secondAttribute="bottom" priority="750" constant="8" id="6Yx-D2-77I"/>
                                         <constraint firstItem="PHc-uF-0nW" firstAttribute="top" secondItem="heN-PF-KaF" secondAttribute="bottom" constant="8" id="6yg-KM-gq7"/>
                                         <constraint firstItem="PxV-Zs-maU" firstAttribute="top" secondItem="Lel-J4-DkN" secondAttribute="top" constant="8" id="BqY-j7-LqE"/>
                                         <constraint firstItem="Il7-0G-ac3" firstAttribute="leading" secondItem="PxV-Zs-maU" secondAttribute="trailing" constant="8" id="ChL-aT-vS2"/>
@@ -71,6 +73,7 @@
                                     <outlet property="lblIntro" destination="PHc-uF-0nW" id="G8H-hX-U9f"/>
                                     <outlet property="lblName" destination="heN-PF-KaF" id="xfl-Hk-TjS"/>
                                     <outlet property="lblParkName" destination="PxV-Zs-maU" id="I8g-xV-48U"/>
+                                    <segue destination="lOK-yD-gnt" kind="show" identifier="show_spot_info" id="hH8-BE-Rql"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoadingProgressCell" rowHeight="45" id="mTm-rq-MQo" customClass="LoadingProgressCell" customModule="Taipei_Park" customModuleProvider="target">
@@ -90,6 +93,7 @@
                                         <constraint firstItem="E03-El-0P1" firstAttribute="centerX" secondItem="gBB-m3-c1P" secondAttribute="centerX" id="t6F-fz-2oy"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="loadingIndicator" destination="E03-El-0P1" id="qfm-FL-ACB"/>
                                 </connections>
@@ -106,6 +110,40 @@
             </objects>
             <point key="canvasLocation" x="-104.8" y="-938.68065967016503"/>
         </scene>
+        <!--Park Spot Detail View Controller-->
+        <scene sceneID="Ssf-X3-YJx">
+            <objects>
+                <viewController storyboardIdentifier="ParkSpotDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lOK-yD-gnt" customClass="ParkSpotDetailViewController" customModule="Taipei_Park" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g19-Bx-Png">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ol-jI-1P9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="281" id="yFM-3t-ccl"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3Ol-jI-1P9" firstAttribute="trailing" secondItem="z5W-F5-2nw" secondAttribute="trailing" id="VYu-n3-pgt"/>
+                            <constraint firstItem="3Ol-jI-1P9" firstAttribute="leading" secondItem="z5W-F5-2nw" secondAttribute="leading" id="bJE-DP-AhK"/>
+                            <constraint firstItem="3Ol-jI-1P9" firstAttribute="top" secondItem="g19-Bx-Png" secondAttribute="top" id="clT-5D-UeL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z5W-F5-2nw"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Slx-Ro-bz6"/>
+                    <connections>
+                        <outlet property="imageHeightConstraint" destination="yFM-3t-ccl" id="9Bi-pG-qSm"/>
+                        <outlet property="imgvPark" destination="3Ol-jI-1P9" id="CRP-oJ-43s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kDO-bL-2U8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="-939"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="SY3-8C-Yzq">
             <objects>
@@ -113,6 +151,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iI3-6f-Jwt">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="heq-G0-eX7" kind="relationship" relationship="rootViewController" id="avm-cW-3UZ"/>

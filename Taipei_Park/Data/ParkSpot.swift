@@ -38,4 +38,5 @@ class ParkSpot:Mappable, Equatable{
         
         yearBuilt <- map["YearBuilt"]
     }
+    
 }

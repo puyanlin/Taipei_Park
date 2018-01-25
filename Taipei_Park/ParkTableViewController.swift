@@ -17,7 +17,10 @@ class ParkTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "台北市公園景點"
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,6 +30,7 @@ class ParkTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.scrollViewDidScroll(self.tableView)
         if self.groupedParkSpots == nil {
             DataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedSpots) in
                 if groupedSpots != nil && groupedSpots!.count > 0 {
@@ -39,6 +43,19 @@ class ParkTableViewController: UITableViewController {
                     self?.present(noDataAlert, animated: true, completion: nil)
                 }
             })
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.title = ""
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= 0 {
+            self.title = ""
+        }else{
+            self.title = "台北市公園景點"
         }
     }
 
@@ -74,15 +91,7 @@ class ParkTableViewController: UITableViewController {
         
         if let park = self.sectionTitles?[indexPath.section], let spot = self.groupedParkSpots[park]?[indexPath.row] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParkListCell", for: indexPath) as! ParkListCell
-            cell.lblParkName.text = park
-            cell.lblName.text = spot.name
-            cell.lblIntro.text = spot.introduction
-            
-            if let image = spot.image, let imageUrl = URL(string: image) {
-                cell.imgvPark.sd_setImage(with: imageUrl, placeholderImage: self.defaultImage, options: .continueInBackground, completed: nil)
-            }else{
-                cell.imgvPark.image = self.defaultImage
-            }
+            cell.parkSpot = spot
             return cell
         }
         
@@ -126,14 +135,17 @@ class ParkTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "show_spot_info" {
+            if let itemCell = sender as? ParkListCell, let detailVC = segue.destination as? ParkSpotDetailViewController {
+                detailVC.parkSpot = itemCell.parkSpot
+            }
+        }
+        
     }
-    */
 
 }

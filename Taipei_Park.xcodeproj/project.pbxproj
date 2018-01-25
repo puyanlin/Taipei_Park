@@ -20,6 +20,7 @@
 		3D3BB3392018C2080098E5AA /* ParkSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BB3342018B8B90098E5AA /* ParkSpot.swift */; };
 		3DB51B452019777100988956 /* TaipeiParkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51B442019777100988956 /* TaipeiParkExtensions.swift */; };
 		3DB51B47201980CB00988956 /* LoadingProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51B46201980CB00988956 /* LoadingProgressCell.swift */; };
+		3DB51B492019A9D900988956 /* ParkSpotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51B482019A9D900988956 /* ParkSpotDetailViewController.swift */; };
 		BB00E0178E89215A1BCD8A24 /* Pods_Taipei_ParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A6DBE2CE07CFC35DD3D9B2 /* Pods_Taipei_ParkTests.framework */; };
 		FA43114C5373B991649747B9 /* Pods_Taipei_Park.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E50A709C3EAE7B304BA4834 /* Pods_Taipei_Park.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		3D3BB3362018BC280098E5AA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3DB51B442019777100988956 /* TaipeiParkExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaipeiParkExtensions.swift; sourceTree = "<group>"; };
 		3DB51B46201980CB00988956 /* LoadingProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressCell.swift; sourceTree = "<group>"; };
+		3DB51B482019A9D900988956 /* ParkSpotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkSpotDetailViewController.swift; sourceTree = "<group>"; };
 		47A6DBE2CE07CFC35DD3D9B2 /* Pods_Taipei_ParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taipei_ParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5230D1736F52FC1ACD8593E6 /* Pods-Taipei_ParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taipei_ParkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taipei_ParkTests/Pods-Taipei_ParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BCCDB5842562469B8A5975D /* Pods-Taipei_Park.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taipei_Park.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taipei_Park/Pods-Taipei_Park.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				3D3BB3332018B88B0098E5AA /* Data */,
 				3D3BB30F2018AA100098E5AA /* AppDelegate.swift */,
 				3D3BB32F2018B7310098E5AA /* ParkTableViewController.swift */,
+				3DB51B482019A9D900988956 /* ParkSpotDetailViewController.swift */,
 				3D3BB3312018B7940098E5AA /* ParkListCell.swift */,
 				3DB51B46201980CB00988956 /* LoadingProgressCell.swift */,
 				3D3BB3132018AA100098E5AA /* Main.storyboard */,
@@ -396,6 +399,7 @@
 				3D3BB3302018B7310098E5AA /* ParkTableViewController.swift in Sources */,
 				3DB51B47201980CB00988956 /* LoadingProgressCell.swift in Sources */,
 				3D3BB3322018B7940098E5AA /* ParkListCell.swift in Sources */,
+				3DB51B492019A9D900988956 /* ParkSpotDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

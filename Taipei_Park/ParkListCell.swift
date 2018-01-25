@@ -7,9 +7,26 @@
 //
 
 import UIKit
+import SDWebImage
+
+private let defaultImage = UIImage(named: "park_default")
 
 class ParkListCell: UITableViewCell {
 
+    var parkSpot:ParkSpot! {
+        didSet{
+            lblParkName.text = parkSpot.parkName
+            lblName.text = parkSpot.name
+            lblIntro.text = parkSpot.introduction
+            
+            if let image = parkSpot.image, let imageUrl = URL(string: image) {
+                imgvPark.sd_setImage(with: imageUrl, placeholderImage: defaultImage, options: .continueInBackground, completed: nil)
+            }else{
+                imgvPark.image = defaultImage
+            }
+        }
+    }
+    
     @IBOutlet weak var lblParkName: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblIntro: UILabel!
