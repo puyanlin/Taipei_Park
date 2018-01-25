@@ -10,14 +10,7 @@ import UIKit
 
 class ParkSpotDetailTableViewController: UITableViewController {
     
-    var relatedSpot:[ParkSpot]!
-    var parkSpot:ParkSpot!{
-        didSet{
-            if parkSpot != nil {
-                self.relatedSpot = DataManager.sharedManager.relatedSpots(refSpot: parkSpot, filterRef: true)
-            }
-        }
-    }
+    var parkSpot:ParkSpot!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +25,7 @@ class ParkSpotDetailTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
 
@@ -45,8 +36,6 @@ class ParkSpotDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkSpotDetailCell", for: indexPath) as! ParkSpotDetailCell
         cell.parkSpot = parkSpot
-        
-        // Configure the cell...
 
         return cell
     }

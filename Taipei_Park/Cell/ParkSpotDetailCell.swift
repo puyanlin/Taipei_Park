@@ -8,19 +8,41 @@
 
 import UIKit
 
-class ParkSpotDetailCell: ParkListCell {
+class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource {
 
     @IBOutlet weak var lblOpenTime: UILabel!
+    @IBOutlet weak var relatedViewContainer: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override var parkSpot: ParkSpot!{
         didSet{
             lblOpenTime.text = "開放時間：\(parkSpot.openTime)"
+            self.relatedSpots = DataManager.sharedManager.relatedSpots(refSpot: parkSpot, filterRef: true)
+            if self.relatedSpots != nil && self.relatedSpots!.count > 0 {
+                relatedViewContainer.isHidden = false
+                self.collectionView.reloadData()
+            }else{
+                relatedViewContainer.isHidden = true
+            }
         }
     }
     
+    private var relatedSpots:[ParkSpot]?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        collectionView.register(UINib(nibName: "RelatedParkSpotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RelatedParkSpotCollectionViewCell")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.relatedSpots == nil ? 0:self.relatedSpots!.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RelatedParkSpotCollectionViewCell", for: indexPath) as! RelatedParkSpotCollectionViewCell
+        cell.parkSpot = self.relatedSpots![indexPath.item]
+        
+        return cell
     }
     
 }

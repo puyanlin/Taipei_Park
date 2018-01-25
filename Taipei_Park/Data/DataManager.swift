@@ -26,7 +26,7 @@ class DataManager {
     
     private init(){}
     
-    func requestParkInfo(limit:Int? = nil, offset:Int? = nil, completion:@escaping ((_ groupedParkSpots:[String:[ParkSpot]]?)->Void)){
+    func requestParkInfo(completion:@escaping ((_ groupedParkSpots:[String:[ParkSpot]]?)->Void)){
         
         let parkInfoUrl = "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=bf073841-c734-49bf-a97f-3757a6013812"
         self.groupedParkSpots = nil
