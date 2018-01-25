@@ -16,14 +16,51 @@ class ParkSpotDetailViewController: UIViewController {
     
     var parkSpot:ParkSpot!
     
+    private var detailViewController:ParkSpotDetailTableViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let image = parkSpot.image, let imageUrl = URL(string: image) {
-            
-             imgvPark.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
-            
+            imageHeightConstraint.constant = UIScreen.main.bounds.size.width * 0.75
+            imgvPark.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
         }else{
             imageHeightConstraint.constant = 0
+        }
+        
+//        imageHeightConstraint.constant = 0
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if detailViewController == nil {
+            self.addDetailViewController()
+        }
+    }
+    
+    private func addDetailViewController(){
+        detailViewController = ParkSpotDetailTableViewController(style: .plain)
+        detailViewController.parkSpot = parkSpot
+        self.addChildViewController(detailViewController)
+        
+        detailViewController.tableView.frame = self.view.frame
+        
+        self.view.addSubview(detailViewController.tableView)
+        detailViewController.didMove(toParentViewController: self)
+        
+        detailViewController.tableView.backgroundColor = UIColor.clear
+        detailViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        let left:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .left, relatedBy:.equal, toItem:self.view, attribute:.left, multiplier:1.0, constant: 0)
+        let right:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .right, relatedBy:.equal, toItem:self.view, attribute:.right, multiplier:1.0, constant: 0)
+        let top:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .top, relatedBy:.equal, toItem:self.view, attribute:.top, multiplier:1.0, constant: 0)
+        let bottom:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .bottom, relatedBy:.equal, toItem:self.view, attribute:.bottom, multiplier:1.0, constant: 0)
+        self.view.addConstraints([left,right,top,bottom])
+        
+        if imageHeightConstraint.constant > 0 {
+            let topHeight = self.topLayoutGuide.length
+            let transparentHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: imageHeightConstraint.constant - topHeight))
+            detailViewController.tableView.tableHeaderView = transparentHeaderView
+            transparentHeaderView.backgroundColor = UIColor.clear
         }
     }
 

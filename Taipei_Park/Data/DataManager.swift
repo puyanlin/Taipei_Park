@@ -52,28 +52,15 @@ class DataManager {
         
     }
     
-//    func relatedSpots(refSpot:ParkSpot, filterRef:Bool = false) -> [ParkSpot]?{
-//        if parkSpots != nil {
-//            if var cached = cachedRelatedSpot[refSpot.parkName] {
-//                if filterRef {
-//                    cached.removeObject(refSpot)
-//                }
-//                return cached
-//            }
-//            if var filtered = parkSpots?.filter({ (spot) -> Bool in
-//                return spot.parkName == refSpot.parkName
-//            }) {
-//                cachedRelatedSpot.updateValue(filtered, forKey: refSpot.parkName)
-//                if filterRef {
-//                    filtered.removeObject(refSpot)
-//                }
-//                return filtered
-//            }
-//
-//        }
-//        return nil
-//    }
-    
-    
-    
+    func relatedSpots(refSpot:ParkSpot, filterRef:Bool = false) -> [ParkSpot]?{
+        if groupedParkSpots != nil {
+            if var related = groupedParkSpots![refSpot.parkName] {
+                if filterRef {
+                    related.removeObject(refSpot)
+                }
+                return related
+            }
+        }
+        return nil
+    }
 }

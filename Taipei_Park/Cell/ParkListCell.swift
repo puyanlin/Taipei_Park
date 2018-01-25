@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-private let defaultImage = UIImage(named: "park_default")
+let defaultImage = UIImage(named: "park_default")
 
 class ParkListCell: UITableViewCell {
 
@@ -19,10 +19,12 @@ class ParkListCell: UITableViewCell {
             lblName.text = parkSpot.name
             lblIntro.text = parkSpot.introduction
             
-            if let image = parkSpot.image, let imageUrl = URL(string: image) {
-                imgvPark.sd_setImage(with: imageUrl, placeholderImage: defaultImage, options: .continueInBackground, completed: nil)
-            }else{
-                imgvPark.image = defaultImage
+            if imgvPark != nil {
+                if let image = parkSpot.image, let imageUrl = URL(string: image) {
+                    imgvPark.sd_setImage(with: imageUrl, placeholderImage: defaultImage, options: .continueInBackground, completed: nil)
+                }else{
+                    imgvPark.image = defaultImage
+                }
             }
         }
     }
@@ -35,12 +37,6 @@ class ParkListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
