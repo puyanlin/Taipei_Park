@@ -7,17 +7,39 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ParkTableViewController: UITableViewController {
 
+    private var groupedParkSpots:[String:[ParkSpot]]!
+    private var sectionTitles:[String]?
+    private let defaultImage = UIImage(named: "park_default")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "台北市公園景點"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.groupedParkSpots == nil {
+            DataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedSpots) in
+                if groupedSpots != nil && groupedSpots!.count > 0 {
+                    self?.groupedParkSpots = groupedSpots
+                    self?.sectionTitles = Array(groupedSpots!.keys)
+                    self?.tableView.reloadData()
+                }else{
+                    let noDataAlert = UIAlertController(title: "無法取得景點資料", message: "請稍候再試", preferredStyle: .alert)
+                    noDataAlert.addAction(UIAlertAction(title: "好", style: .default, handler: nil))
+                    self?.present(noDataAlert, animated: true, completion: nil)
+                }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +50,46 @@ class ParkTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        guard let sectionTitles = self.sectionTitles else {
+            return 1 //loading
+        }
+        return sectionTitles.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        guard let sectionTitles = self.sectionTitles else {
+            return 1 //loading
+        }
+        return self.groupedParkSpots[sectionTitles[section]]!.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sectionTitles = self.sectionTitles else {
+            return nil
+        }
+        return sectionTitles[section]
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        
+        if let park = self.sectionTitles?[indexPath.section], let spot = self.groupedParkSpots[park]?[indexPath.row] {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParkListCell", for: indexPath) as! ParkListCell
+            cell.lblParkName.text = park
+            cell.lblName.text = spot.name
+            cell.lblIntro.text = spot.introduction
+            
+            if let image = spot.image, let imageUrl = URL(string: image) {
+                cell.imgvPark.sd_setImage(with: imageUrl, placeholderImage: self.defaultImage, options: .continueInBackground, completed: nil)
+            }else{
+                cell.imgvPark.image = self.defaultImage
+            }
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingProgressCell", for: indexPath) as! LoadingProgressCell
+        cell.loadingIndicator.startAnimating()
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

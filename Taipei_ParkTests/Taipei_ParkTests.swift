@@ -24,8 +24,16 @@ class Taipei_ParkTests: XCTestCase {
     
     func testRequestParkInfo() {
         let exp = self.expectation(description: "Expectation")
-        DataManager.sharedManager.requestParkInfo { (success) in
-            XCTAssert(success)
+        DataManager.sharedManager.requestParkInfo { (spots) in
+            XCTAssert(spots != nil)
+            XCTAssert(spots!.count > 0)
+            for key in spots!.keys {
+                for spot in spots![key]! {
+                    XCTAssert(spot.name != nil && !spot.name.isEmpty)
+                    XCTAssert(spot.parkName != nil && !spot.parkName.isEmpty)
+                    XCTAssert(spot.introduction != nil, "introduction: \(spot.introduction!)")
+                }
+            }
             exp.fulfill()
         }
         self.waitForExpectations(timeout: 30) { (exp) in

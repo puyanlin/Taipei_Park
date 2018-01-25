@@ -9,6 +9,7 @@ target 'Taipei_Park' do
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireObjectMapper', '~> 5.0'
   pod 'Alamofire-SwiftyJSON'
+  pod 'SDWebImage', '~> 4.0'
   
   target 'Taipei_ParkTests' do
     inherit! :search_paths
