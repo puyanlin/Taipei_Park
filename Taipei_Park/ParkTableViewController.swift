@@ -32,15 +32,19 @@ class ParkTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.scrollViewDidScroll(self.tableView)
         if self.groupedParkSpots == nil {
-            DataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedSpots) in
+            DataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedSpots,success) in
+                
+                if !success {
+                    let useCache = groupedSpots != nil && groupedSpots!.count > 0
+                    let noDataAlert = UIAlertController(title: "無法取得景點資料", message: useCache ? "目前顯示為歷史資料":"請稍候再試", preferredStyle: .alert)
+                    noDataAlert.addAction(UIAlertAction(title: "好", style: .default, handler: nil))
+                    self?.present(noDataAlert, animated: true, completion: nil)
+                }
+                
                 if groupedSpots != nil && groupedSpots!.count > 0 {
                     self?.groupedParkSpots = groupedSpots
                     self?.sectionTitles = Array(groupedSpots!.keys)
                     self?.tableView.reloadData()
-                }else{
-                    let noDataAlert = UIAlertController(title: "無法取得景點資料", message: "請稍候再試", preferredStyle: .alert)
-                    noDataAlert.addAction(UIAlertAction(title: "好", style: .default, handler: nil))
-                    self?.present(noDataAlert, animated: true, completion: nil)
                 }
             })
         }

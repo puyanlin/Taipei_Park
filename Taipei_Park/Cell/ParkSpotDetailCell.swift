@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource {
+typealias relatedParkSpotClickedCallback = ((_ spot:ParkSpot) -> Void)
+
+class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource,UICollectionViewDelegate {
 
     @IBOutlet weak var lblOpenTime: UILabel!
     @IBOutlet weak var relatedViewContainer: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var callback:relatedParkSpotClickedCallback?
     
     override var parkSpot: ParkSpot!{
         didSet{
@@ -20,6 +24,7 @@ class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource {
             self.relatedSpots = DataManager.sharedManager.relatedSpots(refSpot: parkSpot, filterRef: true)
             if self.relatedSpots != nil && self.relatedSpots!.count > 0 {
                 relatedViewContainer.isHidden = false
+                self.collectionView.setContentOffset(CGPoint.zero, animated: false)
                 self.collectionView.reloadData()
             }else{
                 relatedViewContainer.isHidden = true
@@ -43,6 +48,11 @@ class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource {
         cell.parkSpot = self.relatedSpots![indexPath.item]
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! RelatedParkSpotCollectionViewCell
+        self.callback?(selectedCell.parkSpot)
     }
     
 }

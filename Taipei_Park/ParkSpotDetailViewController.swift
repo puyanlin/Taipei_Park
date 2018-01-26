@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 class ParkSpotDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imgvPark: UIImageView!
     
@@ -20,15 +20,6 @@ class ParkSpotDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let image = parkSpot.image, let imageUrl = URL(string: image) {
-            imageHeightConstraint.constant = UIScreen.main.bounds.size.width * 0.75
-            imgvPark.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
-        }else{
-            imageHeightConstraint.constant = 0
-        }
-        
-//        imageHeightConstraint.constant = 0
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,7 +31,10 @@ class ParkSpotDetailViewController: UIViewController {
     
     private func addDetailViewController(){
         detailViewController = ParkSpotDetailTableViewController(style: .plain)
-        detailViewController.parkSpot = parkSpot
+        setup(spot: parkSpot)
+        detailViewController.relatedParkSpotClickedCallback = { [weak self] (spot) in
+            self?.click(relatedSpot: spot)
+        }
         self.addChildViewController(detailViewController)
         
         detailViewController.tableView.frame = self.view.frame
@@ -56,12 +50,6 @@ class ParkSpotDetailViewController: UIViewController {
         let bottom:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .bottom, relatedBy:.equal, toItem:self.view, attribute:.bottom, multiplier:1.0, constant: 0)
         self.view.addConstraints([left,right,top,bottom])
         
-        if imageHeightConstraint.constant > 0 {
-            let topHeight = self.topLayoutGuide.length
-            let transparentHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: imageHeightConstraint.constant - topHeight))
-            detailViewController.tableView.tableHeaderView = transparentHeaderView
-            transparentHeaderView.backgroundColor = UIColor.clear
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +57,33 @@ class ParkSpotDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func click(relatedSpot:ParkSpot){
+        print("click \(relatedSpot.name)")
+        setup(spot: relatedSpot)
+    }
+    
+    private func setup(spot:ParkSpot){
+        parkSpot = spot
+        detailViewController.parkSpot = parkSpot
+        if let image = parkSpot.image, let imageUrl = URL(string: image) {
+            imageHeightConstraint.constant = UIScreen.main.bounds.size.width * 0.75
+            imgvPark.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
+        }else{
+            imageHeightConstraint.constant = 0
+        }
+        
+        if imageHeightConstraint.constant > 0 {
+            let topHeight = self.topLayoutGuide.length
+            let transparentHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: imageHeightConstraint.constant - topHeight))
+            detailViewController.tableView.tableHeaderView = transparentHeaderView
+            transparentHeaderView.backgroundColor = UIColor.clear
+        }
+        
+    }
+    
+    deinit {
+        print("ParkSpotDetailViewController deinit...")
+    }
 
     /*
     // MARK: - Navigation

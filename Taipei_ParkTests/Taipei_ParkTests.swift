@@ -24,7 +24,8 @@ class Taipei_ParkTests: XCTestCase {
     
     func testRequestParkInfo() {
         let exp = self.expectation(description: "Expectation")
-        DataManager.sharedManager.requestParkInfo { (spots) in
+        DataManager.sharedManager.requestParkInfo { (spots, success) in
+            XCTAssert(success, "api issue")
             XCTAssert(spots != nil)
             XCTAssert(spots!.count > 0)
             for key in spots!.keys {

@@ -10,7 +10,12 @@ import UIKit
 
 class ParkSpotDetailTableViewController: UITableViewController {
     
-    var parkSpot:ParkSpot!
+    var parkSpot:ParkSpot!{
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
+    var relatedParkSpotClickedCallback:relatedParkSpotClickedCallback?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +41,13 @@ class ParkSpotDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkSpotDetailCell", for: indexPath) as! ParkSpotDetailCell
         cell.parkSpot = parkSpot
+        cell.callback = self.relatedParkSpotClickedCallback
 
         return cell
+    }
+    
+    deinit {
+        print("ParkSpotDetailTableViewController deinit...")
     }
 
     /*
