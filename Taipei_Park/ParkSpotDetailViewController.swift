@@ -29,6 +29,11 @@ class ParkSpotDetailViewController: UIViewController {
         }
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     private func addDetailViewController(){
         detailViewController = ParkSpotDetailTableViewController(style: .plain)
         setup(spot: parkSpot)
@@ -50,11 +55,6 @@ class ParkSpotDetailViewController: UIViewController {
         let bottom:NSLayoutConstraint = NSLayoutConstraint(item: detailViewController.tableView, attribute: .bottom, relatedBy:.equal, toItem:self.view, attribute:.bottom, multiplier:1.0, constant: 0)
         self.view.addConstraints([left,right,top,bottom])
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func click(relatedSpot:ParkSpot){
@@ -84,15 +84,5 @@ class ParkSpotDetailViewController: UIViewController {
     deinit {
         print("ParkSpotDetailViewController deinit...")
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

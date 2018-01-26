@@ -52,7 +52,7 @@ class DataManager {
         
     }
     
-    @discardableResult func parseResults(rawString:String?) -> Bool {
+    @discardableResult private func parseResults(rawString:String?) -> Bool {
         if let strResults = rawString, let parkSpots = [ParkSpot](JSONString: strResults), parkSpots.count > 0 {
             self.groupedParkSpots = [String:[ParkSpot]]()
             for s in parkSpots {

@@ -34,17 +34,17 @@ class ParkTableViewController: UITableViewController {
         if self.groupedParkSpots == nil {
             DataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedSpots,success) in
                 
+                if groupedSpots != nil && groupedSpots!.count > 0 {
+                    self?.groupedParkSpots = groupedSpots
+                    self?.sectionTitles = Array(groupedSpots!.keys)
+                    self?.tableView.reloadData()
+                }
+                
                 if !success {
                     let useCache = groupedSpots != nil && groupedSpots!.count > 0
                     let noDataAlert = UIAlertController(title: "無法取得景點資料", message: useCache ? "目前顯示為歷史資料":"請稍候再試", preferredStyle: .alert)
                     noDataAlert.addAction(UIAlertAction(title: "好", style: .default, handler: nil))
                     self?.present(noDataAlert, animated: true, completion: nil)
-                }
-                
-                if groupedSpots != nil && groupedSpots!.count > 0 {
-                    self?.groupedParkSpots = groupedSpots
-                    self?.sectionTitles = Array(groupedSpots!.keys)
-                    self?.tableView.reloadData()
                 }
             })
         }
@@ -104,45 +104,7 @@ class ParkTableViewController: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_spot_info" {
             if let itemCell = sender as? ParkListCell, let detailVC = segue.destination as? ParkSpotDetailViewController {

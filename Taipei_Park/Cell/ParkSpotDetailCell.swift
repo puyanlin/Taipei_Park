@@ -39,6 +39,7 @@ class ParkSpotDetailCell: ParkListCell,UICollectionViewDataSource,UICollectionVi
         collectionView.register(UINib(nibName: "RelatedParkSpotCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RelatedParkSpotCollectionViewCell")
     }
     
+    // MARK: - Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.relatedSpots == nil ? 0:self.relatedSpots!.count
     }
